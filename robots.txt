@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.autoservis-cvetko.hr/sitemap.xml
+Sitemap: https://servis-cvetko.com/sitemap.xml
