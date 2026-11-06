@@ -247,7 +247,7 @@ section[id] { scroll-margin-top: 84px; }
 }
 @keyframes trust-marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(var(--marquee-shift, -50%)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .trust-track { animation: none; }

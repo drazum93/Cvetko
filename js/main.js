@@ -14,6 +14,33 @@ var googleReviews = [
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Trust strip marquee: drive the loop distance from a measured pixel width
+  // (via a CSS custom property) instead of relying on the browser to keep
+  // recalculating a CSS "-50%" transform after the web font swaps in
+  // (@font-face with font-display:swap reflows the text once Manrope loads,
+  // and some engines don't reliably re-resolve percentage-based transforms
+  // on a running animation after that reflow - that mismatch is what causes
+  // the marquee to drift and land on a blank gap).
+  var trustTrack = document.querySelector(".trust-track");
+  var trustGroup = document.querySelector(".trust-group");
+  if (trustTrack && trustGroup) {
+    var setMarqueeDistance = function () {
+      var w = trustGroup.getBoundingClientRect().width;
+      if (w > 0) {
+        trustTrack.style.setProperty("--marquee-shift", "-" + w + "px");
+      }
+    };
+    setMarqueeDistance();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(setMarqueeDistance);
+    }
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(setMarqueeDistance, 200);
+    });
+  }
+
   var hamburger = document.querySelector(".hamburger");
   var navLinks = document.querySelector(".nav-links");
 
