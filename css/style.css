@@ -221,19 +221,22 @@ section[id] { scroll-margin-top: 84px; }
 
 /* ===== Trust strip (marquee) ===== */
 .trust-strip {
-  display: flex;
   background: var(--ink-2);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   overflow: hidden;
+  white-space: nowrap;
 }
 .trust-track {
-  display: flex;
+  display: inline-flex;
+  flex-shrink: 0;
   width: max-content;
   padding: 12px 0;
   will-change: transform;
   animation: trust-marquee 24s linear infinite;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
-.trust-group { display: flex; flex-shrink: 0; }
+.trust-group { display: inline-flex; flex-shrink: 0; }
 .trust-track span {
   color: var(--text-soft);
   font-size: 0.85rem;
