@@ -271,6 +271,7 @@ section[id] { scroll-margin-top: 84px; }
   padding: 72px 0 110px;
   overflow: hidden;
   background:
+    linear-gradient(180deg, rgba(15,17,22,0.92) 0, rgba(15,17,22,0.45) 90px, rgba(15,17,22,0) 220px),
     radial-gradient(ellipse 900px 600px at 80% -10%, rgba(0,105,62,0.18), transparent 60%),
     linear-gradient(90deg, rgba(11,11,13,0.6) 0%, rgba(11,11,13,0.5) 20%, rgba(11,11,13,0.36) 38%, rgba(11,11,13,0.22) 55%, rgba(11,11,13,0.1) 72%, rgba(11,11,13,0.02) 88%, rgba(11,11,13,0) 100%),
     url('../images/hero-bg.jpg') center / cover no-repeat;
