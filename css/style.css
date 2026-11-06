@@ -219,40 +219,6 @@ section[id] { scroll-margin-top: 84px; }
 }
 .nav-cta-btn:hover { box-shadow: 0 10px 24px rgba(0,105,62,0.5); transform: translateY(-2px); }
 
-/* ===== Trust strip (marquee) ===== */
-.trust-strip {
-  background: var(--ink-2);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  overflow: hidden;
-  white-space: nowrap;
-}
-.trust-track {
-  display: inline-flex;
-  flex-shrink: 0;
-  width: max-content;
-  padding: 12px 0;
-  will-change: transform;
-  animation: trust-marquee 24s linear infinite;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-.trust-group { display: inline-flex; flex-shrink: 0; }
-.trust-track span {
-  color: var(--text-soft);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
-  margin-right: 48px;
-}
-@keyframes trust-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(var(--marquee-shift, -50%)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .trust-track { animation: none; }
-}
-
 /* ===== Back to top ===== */
 .back-to-top {
   position: fixed;
