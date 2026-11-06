@@ -30,30 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  var trustTrack = document.getElementById("trust-track");
-  var trustGroup = trustTrack ? trustTrack.querySelector(".trust-group") : null;
-  if (trustTrack && trustGroup) {
-    var trustSpeed = 40; // px per second
-    var trustOffset = 0;
-    var trustGroupWidth = trustGroup.getBoundingClientRect().width;
-    var trustLastTime = null;
-
-    function trustTick(time) {
-      if (trustLastTime === null) trustLastTime = time;
-      var delta = (time - trustLastTime) / 1000;
-      trustLastTime = time;
-      trustOffset += trustSpeed * delta;
-      if (trustOffset >= trustGroupWidth) trustOffset -= trustGroupWidth;
-      trustTrack.style.transform = "translateX(-" + trustOffset + "px)";
-      requestAnimationFrame(trustTick);
-    }
-    requestAnimationFrame(trustTick);
-
-    window.addEventListener("resize", function () {
-      trustGroupWidth = trustGroup.getBoundingClientRect().width;
-    });
-  }
-
   var revealEls = document.querySelectorAll(".reveal, .reveal-stagger");
   if ("IntersectionObserver" in window) {
     var observer = new IntersectionObserver(
