@@ -672,6 +672,18 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
 .callbar a.call { background: var(--orange); border-color: var(--orange); color: #fff; }
 .callbar svg { width: 18px; height: 18px; }
 
+/* iOS 26 Safari: fixed bottom:0 sits above the floating toolbar and the page
+   shows through underneath. Extend the bar's background below the viewport
+   so the area behind the toolbar is solid, not scrolling content. */
+.callbar::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 100%;
+  height: 120px;
+  background: var(--ink-2);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 980px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
