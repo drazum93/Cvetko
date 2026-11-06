@@ -141,6 +141,11 @@ header.site-header {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+/* Safari/WebKit bug: backdrop-filter on the same element as position: sticky
+   (or fixed) can break the sticky positioning itself. Keep the blur/background
+   on an inner wrapper instead, so the sticky box stays plain. */
+.site-header-glass {
   background: rgba(15,17,22,0.78);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -649,6 +654,9 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
   background: var(--ink-2);
   border-top: 1px solid var(--line-dark);
   padding: 10px 14px;
+  /* iOS Safari: pad for the home-indicator / bottom chrome so content doesn't
+     sit underneath it. Requires viewport-fit=cover in the viewport meta tag. */
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
   gap: 10px;
 }
 .callbar a {
@@ -677,7 +685,7 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
   }
   .nav-links.open a { display: block; padding: 12px 0; }
   .callbar { display: flex; }
-  body { padding-bottom: 72px; }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
   .back-to-top { bottom: 84px; right: 16px; }
 }
 
