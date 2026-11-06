@@ -457,34 +457,6 @@ section[id] { scroll-margin-top: 84px; }
 }
 .review-dots button.active { background: var(--orange-2); width: 22px; border-radius: 4px; }
 
-/* ===== Pricing ===== */
-.price-list { display: flex; flex-direction: column; border: 1px solid var(--line-dark); border-radius: var(--r); overflow: hidden; }
-.price-row {
-  display: grid; grid-template-columns: 1fr auto;
-  align-items: center; gap: 16px;
-  padding: 24px 28px;
-  border-bottom: 1px solid var(--line-dark);
-  transition: background 0.2s ease;
-}
-.price-row:last-child { border-bottom: none; }
-.price-row:hover { background: var(--ink-2); }
-.price-row:hover h4 { color: var(--text); }
-.price-row h4 { font-size: 1.1rem; margin-bottom: 4px; }
-.price-row p { color: var(--text-soft); font-size: 0.92rem; }
-.price-col { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.price-row .price { font-size: 1.25rem; font-weight: 800; color: var(--orange-2); white-space: nowrap; }
-.price-cta { font-size: 0.78rem; font-weight: 700; color: var(--orange-2); white-space: nowrap; }
-.price-cta:hover { text-decoration: underline; }
-.price-note { text-align: center; color: var(--text-soft); margin-top: 24px; font-size: 0.9rem; }
-.sec-light .price-row p { color: var(--text-dark-soft); }
-.sec-light .price-row:hover { background: #3c4049; }
-.sec-light .price-row:hover p { color: var(--text-soft); }
-.sec-light .price-row .price { color: var(--orange); }
-.sec-light .price-cta { color: var(--orange); }
-.sec-light .price-row:hover .price,
-.sec-light .price-row:hover .price-cta { color: var(--orange-2); }
-.sec-light .price-note { color: var(--text-dark-soft); }
-
 /* ===== Service sub-page header ===== */
 .page-lead { color: var(--text-soft); max-width: 640px; margin: 18px 0 30px; font-size: 1.1rem; }
 .sec-light .page-lead { color: var(--text-dark-soft); }
@@ -715,10 +687,8 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
   .footer-grid { grid-template-columns: 1fr; }
   .sec { padding: 70px 0; }
   .hero { padding: 110px 0 70px; }
-  .price-row { grid-template-columns: 1fr; gap: 6px; }
-  .price-col { flex-direction: row; align-items: center; gap: 14px; }
   .about-media .badge { bottom: 16px; left: 16px; padding: 14px 18px; }
-  .service-cta, .price-cta { padding: 6px 0; }
+  .service-cta { padding: 6px 0; }
   .sec-compact { padding: 44px 0; }
   .service-card { padding: 26px 22px; }
   .gallery-item img { height: 200px; }
