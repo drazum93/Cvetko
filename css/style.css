@@ -1,5 +1,5 @@
 /* ===== Reset & tokens ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 :root {
   --ink: #12141a;
@@ -354,6 +354,7 @@ section[id] { scroll-margin-top: 84px; }
   padding: 9px 18px;
   font-size: 0.88rem;
   color: var(--text-soft);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 .rating-pill .stars { color: var(--orange-2); letter-spacing: 1px; font-size: 0.85rem; }
@@ -673,6 +674,7 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
   letter-spacing: -2px;
   line-height: 1;
   margin-bottom: -10px;
+  -webkit-user-select: none;
   user-select: none;
 }
 .footer-grid {

@@ -274,7 +274,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var dateInput = document.getElementById("bf-date");
     if (dateInput) {
       var today = new Date();
-      dateInput.min = today.toISOString().split("T")[0];
+      var yyyy = today.getFullYear();
+      var mm = String(today.getMonth() + 1).padStart(2, "0");
+      var dd = String(today.getDate()).padStart(2, "0");
+      dateInput.min = yyyy + "-" + mm + "-" + dd;
     }
 
     function setFieldError(input, message) {
