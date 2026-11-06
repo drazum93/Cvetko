@@ -303,7 +303,7 @@
       <h2>Zatražite termin ili ponudu</h2>
       <p>Ispunite formu i javit ćemo vam se telefonski ili e-poštom radi potvrde termina.</p>
     </div>
-    <form class="booking-form reveal" id="booking-form" novalidate>
+    <form class="booking-form reveal" id="booking-form" action="https://formspree.io/f/xwllzgba" method="POST" novalidate>
       <div class="form-row">
         <div class="field">
           <label for="bf-name">Ime i prezime <span class="req">*</span></label>
@@ -376,6 +376,7 @@
         <label for="bf-website">Website</label>
         <input type="text" id="bf-website" name="website" tabindex="-1" autocomplete="off">
       </div>
+      <input type="hidden" name="_subject" value="Novi upit s web stranice - Auto Servis Cvetko">
       <label class="field-check">
         <input type="checkbox" id="bf-consent" name="consent" required>
         <span>Slažem se da se moji podaci koriste isključivo za kontaktiranje u vezi ovog upita. <span class="req">*</span></span>

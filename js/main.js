@@ -367,13 +367,31 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       bookingForm.classList.add("is-submitting");
-      setTimeout(function () {
-        bookingForm.classList.remove("is-submitting");
-        bookingForm.querySelectorAll(".field, .field-check").forEach(function (f) { f.style.display = "none"; });
-        bookingForm.querySelector(".form-actions").style.display = "none";
-        var success = bookingForm.querySelector(".form-success");
-        if (success) success.removeAttribute("hidden");
-      }, 700);
+      var submitBtn = bookingForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(bookingForm.action, {
+        method: "POST",
+        body: new FormData(bookingForm),
+        headers: { Accept: "application/json" },
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("submit-failed");
+          bookingForm.classList.remove("is-submitting");
+          bookingForm.querySelectorAll(".field, .field-check").forEach(function (f) { f.style.display = "none"; });
+          bookingForm.querySelector(".form-actions").style.display = "none";
+          var success = bookingForm.querySelector(".form-success");
+          if (success) success.removeAttribute("hidden");
+        })
+        .catch(function () {
+          bookingForm.classList.remove("is-submitting");
+          if (submitBtn) submitBtn.disabled = false;
+          var note = bookingForm.querySelector(".form-note");
+          if (note) {
+            note.textContent = "Slanje nije uspjelo. Pokušajte ponovno ili nas nazovite na 01 3357 992.";
+            note.style.color = "var(--orange-2, #e05a2b)";
+          }
+        });
     });
   }
 });
