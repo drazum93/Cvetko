@@ -46,15 +46,23 @@ main {
   overflow-x: clip;
 }
 
-/* grain texture overlay */
+/* Grain texture overlay.
+   NOTE: this used to have mix-blend-mode: overlay and z-index: 200, which was
+   almost certainly the real cause of the sticky header detaching on iOS Safari.
+   A blended, full-viewport fixed layer painted ON TOP of the header forces
+   WebKit to rasterise the whole page (header included) into one isolated group
+   so it can compute the blend. Once the header is merged into that group it no
+   longer gets its own composited layer, so Safari's scrolling thread cannot
+   offset it while scrolling - it paints at a stale position, i.e. "floats"
+   mid-page. Dropping the blend and moving the grain BELOW the header/callbar
+   lets the header be composited independently again. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 200;
+  z-index: 1;
   opacity: 0.045;
-  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -427,7 +435,8 @@ section[id] { scroll-margin-top: 84px; }
 .review-track {
   display: flex; gap: 20px; overflow-x: auto;
   scroll-snap-type: x mandatory; scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch removed: it is a no-op on iOS 13+ and
+     only forced an extra composited scrolling layer on older WebKit. */
   padding-bottom: 4px; -ms-overflow-style: none; scrollbar-width: none;
 }
 .review-track::-webkit-scrollbar { display: none; }
@@ -702,6 +711,11 @@ footer.site-footer { background: var(--ink-2); padding: 80px 0 0; position: rela
   .callbar { display: flex; }
   body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
   .back-to-top { bottom: 84px; right: 16px; }
+  /* The decorative spinning circle is a permanently animating composited layer.
+     It keeps repainting even once scrolled past, which on iOS piles GPU work
+     onto the same compositor that has to keep the sticky header in place.
+     It is mostly off-screen on phones anyway, so drop it entirely there. */
+  .hero::after { display: none; }
 }
 
 @media (max-width: 760px) {
