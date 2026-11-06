@@ -24,7 +24,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -36,8 +35,15 @@ body {
   background: var(--ink);
   color: var(--text);
   font: 400 1.05rem/1.65 var(--f-sans);
-  overflow-x: clip;
   position: relative;
+}
+
+/* overflow-x containment lives on <main> (not html/body) because Safari
+   breaks position:sticky on any descendant when an ancestor up to and
+   including html/body has a non-visible overflow - this is what made the
+   sticky header float mid-page / detach from the top on iOS Safari. */
+main {
+  overflow-x: clip;
 }
 
 /* grain texture overlay */
