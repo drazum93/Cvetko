@@ -2,10 +2,10 @@
   "name": "cvetko",
   "compatibility_date": "2026-11-06",
   "assets": {
-    "directory": "./",
-    // Serve /usluge/foo.html literally. Without this, Cloudflare's default
-    // "auto-trailing-slash" strips the .html and 307-redirects every sub-page,
-    // which disagrees with the .html URLs in our canonical tags and sitemap.
-    "html_handling": "none"
+    "directory": "./"
+    // Leave html_handling at its default ("auto-trailing-slash"). It does
+    // 307-redirect /usluge/foo.html to /usluge/foo, which is cosmetically
+    // untidy, but setting it to "none" also disables resolving "/" to
+    // index.html and makes the homepage 404 - verified the hard way.
   }
 }
